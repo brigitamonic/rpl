@@ -1,0 +1,46 @@
+database:
+
+mahasiswa : nim (int 8) pk
+ 			nama_mahasiswa (varchar 100)
+ 			jenis_kelamin (enum (L,P))
+ 			telepon_mahasiswa (char 13)
+ 			email_mahasiswa(varchar 50)
+ 			password_mahasiswa(varchar 100)
+ 			tahun_masuk_mahasiswa (varchar 9)
+ 			foto_mahasiswa (varchar 100)
+
+dosen : nidn (varchar 10) pk
+ 		nama_dosen (varchar 100)
+ 		jenis_kelamin_dosen (enum (L, P))
+ 		telepon_dosen (char 13)
+ 		email_dosen (varchar 50)
+ 		password_dosen (varchar 100)
+ 		foto_dosen (varchar 100)
+
+pengajuan : id_pengajuan (int 11 ai pk)
+			nidn (varchar 10)
+			nim (int 8)
+			semester_pengajuan (int 2)
+			tahun_pengajuan (varchar 9)
+			lembaga_instantsi (varchar 150)
+			alamat_lembaga_instansi(text)
+			pimpinan_lembaga_instansi (varchar 100)
+			surat_pengajuan_kp (varchar 100)
+			status_pengajuan (enum Belum Diverifikasi, Ditolak,Diterima)
+
+detail_pengajuan : id_detail_pengajuan (int 11 ai) pk
+				   id_pengajuan (int 11)
+				   tanggal_pengujian (datetime)
+				   status (enum KP, Pra KP)
+				   status_detail_pengajuan (enum Selesai, Belum Selesai)
+
+tahun_ajaran : id_tahun_ajaran (int 11 ai pk)				   
+				nama_tahun_ajaran (varchar 9)
+
+penguji : id_penguji (int 11 ai) pk
+		  id_pengajuan (int 11)
+		  nidn_penguji (varchar 10)
+
+koordinator : id_koordinator (int 11 pk) ai
+			  nidn (varchar 8)
+			  id_tahun_ajaran (int 11)
