@@ -47,13 +47,6 @@ class _DataDiriDosen extends State<DataDiriDosen> {
       appBar: AppBar(
         title: Text('Php Mysql Crud'),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPageDosen(),),);
-          debugPrint('Clicked FloatingActionButton Button');
-        },
-      ),
       body: FutureBuilder(
         future: getData(),
         builder: (context,snapshot){

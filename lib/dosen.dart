@@ -74,21 +74,7 @@ class _DosenState extends State<Dosen> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => DataDiri(),),);
               },
             ),
-            ListTile(
-              title: Text("Jadwal"),
-              subtitle: Text("Menu Jadwal"),
-              trailing: Icon(
-                Icons.schedule,
-                color: Color(0xFF0D47A1),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(),//builder: (context) => DashboardJadwal(title: "Data Jadwal"))
-                );
-              },
-            ),
+
             Divider(
               color: Colors.grey,
               height: 20,

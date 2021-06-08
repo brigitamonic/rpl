@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rpl_app/main.dart';
 import 'package:rpl_app/user/Data%20Diri.dart';
+import 'package:rpl_app/user/PengajuanMhs.dart';
 
 class User extends StatefulWidget {
   final String email;
@@ -61,7 +62,7 @@ class _UserState extends State<User> {
                 color: Color(0xFF0D47A1),
               ),
               subtitle: Text(
-                "Biodata",
+                "Data mahasiswa",
                 style: TextStyle(
                   color: Colors.grey,
                 ),
@@ -69,7 +70,7 @@ class _UserState extends State<User> {
             ),
             ListTile(
               title: Text(
-                "Data Mahasiswa",
+                "Pengajuan Kp",
                 style: TextStyle(
                   color: Color(0xFF0D47A1),
                 ),
@@ -79,34 +80,17 @@ class _UserState extends State<User> {
                 color: Color(0xFF0D47A1),
               ),
               subtitle: Text(
-                "Melihat Mahasiswa",
+                "Mengajuakan Form",
                 style: TextStyle(
                   color: Colors.grey,
                 ),
               ),
               onTap: (){
                 Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(),//builder: (context) => DashboardMahasiswa(title: "Menu Mahasiswa",)),
-                );
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPagePengajuanMhs(),),);
               },
             ),
-            ListTile(
-              title: Text("Jadwal"),
-              subtitle: Text("Menu Jadwal"),
-              trailing: Icon(
-                Icons.schedule,
-                color: Color(0xFF0D47A1),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(),//builder: (context) => DashboardJadwal(title: "Data Jadwal"))
-                );
-              },
-            ),
+
             Divider(
               color: Colors.grey,
               height: 20,

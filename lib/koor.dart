@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:rpl_app/main.dart';
 import 'package:rpl_app/CRUD dosen/Data DiriDosen.dart';
 import 'package:rpl_app/user/Data Diri.dart';
+
+import 'CRUD admin/Data DiriPengajuan.dart';
+import 'CRUD admin/Data DiriUser.dart';
+import 'CRUD admin/Pengajuan.dart';
 class Koor extends StatefulWidget {
   final String email;
 
@@ -71,24 +75,22 @@ class _AdminState extends State<Koor> {
               ),
               onTap: (){
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => DataDiri(),),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DataDiriUserk(),),);
               },
             ),
             ListTile(
-              title: Text("Jadwal"),
-              subtitle: Text("Menu Jadwal"),
+              title: Text("Pengajuan KP"),
+              subtitle: Text("Menu Pengajuan KP"),
               trailing: Icon(
                 Icons.schedule,
                 color: Color(0xFF0D47A1),
               ),
-              onTap: () {
+              onTap: (){
                 Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(),//builder: (context) => DashboardJadwal(title: "Data Jadwal"))
-                );
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DataDiriPengajuan(),),);
               },
             ),
+
             Divider(
               color: Colors.grey,
               height: 20,

@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:rpl_app/user/AddEditPage.dart';
+import 'package:rpl_app/CRUD dosen/AddEditPageDosen.dart';
+
+import 'AddEditPageDosen.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -17,20 +19,20 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: DataDiri(),
+      home: DataDiriDosenk(),
     );
   }
 }
-class DataDiri extends StatefulWidget {
+class DataDiriDosenk extends StatefulWidget {
   @override
-  _DataDiri createState() => _DataDiri();
+  _DataDiriDosenk createState() => _DataDiriDosenk();
 }
 
-class _DataDiri extends State<DataDiri> {
+class _DataDiriDosenk extends State<DataDiriDosenk> {
 
 
   Future getData()async{
-    var response = await http.get(Uri.parse("http://192.168.43.47/rpl/read.php"));
+    var response = await http.get(Uri.parse("http://192.168.43.47/rpl/readDosen.php"));
     return json.decode(response.body);
   }
 
@@ -47,7 +49,13 @@ class _DataDiri extends State<DataDiri> {
       appBar: AppBar(
         title: Text('Php Mysql Crud'),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPageDosenk(),),);
+          debugPrint('Clicked FloatingActionButton Button');
+        },
+      ),
       body: FutureBuilder(
         future: getData(),
         builder: (context,snapshot){
@@ -58,19 +66,23 @@ class _DataDiri extends State<DataDiri> {
               itemBuilder: (context,index){
                 List list = snapshot.data;
                 return ListTile(
-                  leading: GestureDetector(child: Icon(Icons.arrow_forward_outlined), ),
-                  title: Text(list[index]['nm_mhs']),
-                  subtitle: Text(list[index]['nim']),
-
+                  leading: GestureDetector(child: Icon(Icons.edit),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPageDosenk(list: list,index: index,),),);
+                      debugPrint('Edit Clicked');
+                    },),
+                  title: Text(list[index]['nm_dosen']),
+                  subtitle: Text(list[index]['nidn']),
+                  trailing: GestureDetector(child: Icon(Icons.delete),
                     onTap: (){
                       setState(() {
-                         http.post(Uri.parse("http://192.168.43.47/rpl/delete.php"),body: {
-                          'nim' : list[index]['nim'],
+                         http.post(Uri.parse("http://192.168.43.47/rpl/deleteDosen.php"),body: {
+                          'nidn' : list[index]['nidn'],
                         });
                       });
                       debugPrint('delete Clicked');
-                    },);
-
+                    },),
+                );
               }
           )
               : CircularProgressIndicator();
