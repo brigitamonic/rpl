@@ -1,4 +1,4 @@
-<h3>Data Mahasiswa</h3>
+<h3>Data Mahasiswa Bimbingan</h3>
 <hr>
 <div class="table-responsive">
 	<table class="table table-hover" id="thetable">
@@ -7,12 +7,15 @@
 				<th>No</th>
 				<th>NIM</th>
 				<th>Nama</th>
+				<th>Semester</th>
 				<th>Jenis Kelamin</th>
 				<th>Telepon</th>
 				<th>Email</th>
 				<th>Tahun Masuk</th>
-				<th>Foto</th>
-				<th>Opsi</th>
+				<th>Judul KP</th>
+				<th>Lembaga Instansi</th>
+				<th>Pimpinan Lembaga Instansi</th>
+				<!-- <th>Foto</th> -->
 			</tr>
 		</thead>
 		<tbody>
@@ -21,17 +24,17 @@
 					<td><?php echo $key+1 ?></td>
 					<td><?php echo $value['nim'] ?></td>
 					<td><?php echo $value['nama_mahasiswa'] ?></td>
+					<td><?php echo $value['semester_pengajuan'] ?></td>
 					<td><?php echo $value['jenis_kelamin'] ?></td>
 					<td><?php echo $value['telepon_mahasiswa'] ?></td>
 					<td><?php echo $value['email_mahasiswa'] ?></td>
 					<td><?php echo $value['nama_tahun_ajaran'] ?></td>
-					<td><?php echo $value['foto_mahasiswa'] ?></td>
-					<td>
-						<a href="<?php echo base_url("admin/mahasiswa/ubah/$value[nim]") ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
-					</td>
+					<td><?php echo $value['judul_kp'] ?></td>
+					<td><?php echo $value['lembaga_instansi'] ?></td>
+					<td><?php echo $value['pimpinan_lembaga_instansi'] ?></td>
+					<!-- <td><?php echo $value['foto_mahasiswa'] ?></td> -->
 				</tr>
 			<?php endforeach ?>
 		</tbody>
 	</table>
-	<a href="<?php echo base_url("admin/mahasiswa/tambah") ?>" class="btn btn-primary">Tambah</a>
 </div>

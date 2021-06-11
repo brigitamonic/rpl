@@ -6,6 +6,11 @@ class Dosen extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		// cek apakah sudah login? jika belum , usir ke halaman login
+		if ( !$this->session->userdata('admin') ) {
+			redirect('login');
+		}
+
 		$this->load->model('Mdosen');
 	}
 
@@ -13,9 +18,9 @@ class Dosen extends CI_Controller
 	{
 		$data['dosen']=$this->Mdosen->tampil_dosen();
 
-		$this->load->view('dosen/header');
-		$this->load->view('dosen/dosen/tampil',$data);
-		$this->load->view('dosen/footer');
+		$this->load->view('admin/header');
+		$this->load->view('admin/dosen/tampil',$data);
+		$this->load->view('admin/footer');
 	}
 
 	function tambah()
@@ -30,9 +35,9 @@ class Dosen extends CI_Controller
 			redirect('dosen/dosen','refresh');			
 		}
 
-		$this->load->view('dosen/header');
-		$this->load->view('dosen/dosen/tambah');
-		$this->load->view('dosen/footer');
+		$this->load->view('admin/header');
+		$this->load->view('admin/dosen/tambah');
+		$this->load->view('admin/footer');
 	}
 
 	function ubah($nidn)
@@ -48,9 +53,9 @@ class Dosen extends CI_Controller
 		$data['dosen']=$this->Mdosen->ambil_dosen($nidn);
 		//$data['tahun_ajaran']=$this->Mtahun_ajaran->tampil_tahun_ajaran();
 
-		$this->load->view('dosen/header');
-		$this->load->view('dosen/dosen/ubah',$data);
-		$this->load->view('dosen/footer');
+		$this->load->view('admin/header');
+		$this->load->view('admin/dosen/ubah',$data);
+		$this->load->view('admin/footer');
 	}
 }
 ?>

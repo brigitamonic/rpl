@@ -7,6 +7,17 @@
 		<input type="number" min="1" name="nim" class="form-control" required="">
 	</div>
 	<div class="form-group">
+		<label>Dosen Pembimbing</label>
+		<select class="form-control" name="nidn" required>
+			<option value="">-Pilih Dosen Pembimbing-</option>
+			<?php foreach ($dosen as $key => $value): ?>
+				<option 
+
+				value="<?php echo $value['nidn'] ?>"><?php echo $value['nama_dosen'] ?></option>
+			<?php endforeach ?>
+		</select>
+	</div>
+	<div class="form-group">
 		<label>Nama</label>
 		<input type="text" name="nama_mahasiswa" class="form-control" required="">
 	</div>
@@ -43,5 +54,6 @@
 		<label>Foto</label>
 		<input type="file" name="foto_mahasiswa" class="form-control" required="">
 	</div>
+	<hr>
 	<button class="btn btn-primary">Simpan</button>
 </form>

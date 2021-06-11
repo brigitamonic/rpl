@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DosenAdministrator</title>
+  <title>Dosen</title>
   <link href="<?php echo base_url("assets/css/bootstrap.min.css") ?>" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo base_url("assets/fontawesome-free-5.15.1-web/css/all.css") ?>">
@@ -22,6 +22,13 @@
 </head>
 <body>
 
+  <?php 
+
+  $data_login = $this->session->userdata('dosen');
+
+
+  ?>
+
   <div id="wrapper">
     <nav class="navbar navbar-default">
       <div class="navbar-header">
@@ -31,44 +38,27 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Billi</a>
+        <a class="navbar-brand" href="#">Sistem Informasi Kerja Praktek</a>
       </div>
     </nav>
     <nav class="navbar-default navbar-side">
       <div class="user">
         <img src="<?php echo base_url("assets/img/user.png") ?>" alt="">
-        <h3>Billian Sember</h3>
+        <h3><?php echo $data_login['nama_dosen'] ?></h3>
         <p>Dosen</p>
       </div>
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li><a href="<?php echo base_url("dosen/home") ?> "><i class="fa fa-home"></i> Home</a></li>
           
+          <li><a href="<?php echo base_url("dosen/mahasiswa") ?>"><i class="fa fa-closed-captioning"></i> Daftar Bimbingan</a></li>
 
-          <?php if ($cek=='ada'): ?>
-            <li class="tr-tree">
-              <a href="#"><i class="fa fa-cube"></i>Data Master <i class="pull-right fa fa-angle-right"></i></a>
-              <ul class="tr-tree-menu">
-                <li><a href="<?php echo base_url("dosen/mahasiswa") ?>">Mahasiswa</a></li>
-                <li><a href="<?php echo base_url("dosen/dosen") ?>">Dosen</a></li>
-                <li><a href="<?php echo base_url("dosen/penguji") ?>">Penguji</a></li>
-                <li><a href="<?php echo base_url("dosen/kordinator") ?>">Kordinator</a></li>
-              </ul>
-            </li>
-            
-            <li><a href="<?php echo base_url("dosen/tahun_ajaran") ?>"><i class="fa fa-calendar"></i> Tahun Ajaran</a></li>
-            
-            <li><a href="<?php echo base_url("dosen/pengajuan") ?>"><i class="fa fa-closed-captioning"></i> Pengajuan</a></li>
-
-            <?php else: ?>
-              <li><a href="<?php echo base_url("dosen/pengajuan") ?>"><i class="fa fa-closed-captioning"></i> Daftar Bimbingan</a></li>
-
-            <?php endif ?>
+          <li><a href="<?php echo base_url("dosen/pengajuan") ?>"><i class="fa fa-closed-captioning"></i> Daftar Pengajuan</a></li>
 
 
-            <li><a href="<?php echo base_url("dosen/logout") ?>"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div id="page-wrapper">
-        <div id="page-inner">
+          <li><a href="<?php echo base_url("logout") ?>"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="page-wrapper">
+      <div id="page-inner">

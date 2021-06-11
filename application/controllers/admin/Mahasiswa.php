@@ -6,8 +6,14 @@ class Mahasiswa extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		// cek apakah sudah login? jika belum , usir ke halaman login
+		if ( !$this->session->userdata('admin') ) {
+			redirect('login');
+		}
+		
 		$this->load->model('Mmahasiswa');
 		$this->load->model('Mtahun_ajaran');
+		$this->load->model('Mdosen');
 	}
 
 	public function index()
@@ -30,6 +36,7 @@ class Mahasiswa extends CI_Controller
 		}
 
 		$data['tahun']=$this->Mtahun_ajaran->tampil_tahun_ajaran();
+		$data['dosen']=$this->Mdosen->tampil_dosen();
 		$this->load->view('admin/header');
 		$this->load->view('admin/mahasiswa/tambah',$data);
 		$this->load->view('admin/footer');
@@ -47,6 +54,7 @@ class Mahasiswa extends CI_Controller
 
 		$data['mahasiswa']=$this->Mmahasiswa->ambil_mahasiswa($nim);
 		$data['tahun_ajaran']=$this->Mtahun_ajaran->tampil_tahun_ajaran();
+		$data['dosen']=$this->Mdosen->tampil_dosen();
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/mahasiswa/ubah',$data);

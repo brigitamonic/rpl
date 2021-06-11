@@ -16,15 +16,30 @@ class Mlogin extends CI_Model {
 		}
 		else
 		{
+			$this->db->select('*, dosen.nidn AS nidn');
 			$this->db->where('email_dosen', $email);
+			$this->db->join('koordinator', 'koordinator.nidn = dosen.nidn', 'left');
 			$ambil = $this->db->get('dosen');
+
 			$hitung = $ambil->num_rows();
 			if ($hitung==1) 
 			{
 				$akun = $ambil->row_array();
 
-				$this->session->set_userdata("dosen", $akun );
-				return "sukses-dosen";
+				// echo "<pre>";
+				// print_r($akun);
+				// echo "</pre>";
+				// die;
+
+				// jika id_koordinator tidak kosong, berarti dia sbg admin
+				if (!empty($akun['id_koordinator'])) {
+					$this->session->set_userdata("admin", $akun );
+					return "sukses-admin";
+				} else {
+					$this->session->set_userdata("dosen", $akun );
+					return "sukses-dosen";
+				}
+
 			}
 			else
 			{

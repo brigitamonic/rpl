@@ -6,6 +6,10 @@ class Tahun_ajaran extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		// cek apakah sudah login? jika belum , usir ke halaman login
+		if ( !$this->session->userdata('dosen') ) {
+			redirect('login');
+		}
 		$this->load->model('Mdosen');
 		$this->load->model('Mtahun_ajaran');
 	}

@@ -7,6 +7,17 @@
 		<input type="number" min="1" name="nim" class="form-control" value="<?php echo $mahasiswa['nim'] ?>" readonly>
 	</div>
 	<div class="form-group">
+		<label>Dosen Pembimbing</label>
+		<select class="form-control" name="nidn" required>
+			<option value="">-Pilih Dosen Pembimbing-</option>
+			<?php foreach ($dosen as $key => $value): ?>
+				<option <?php if ($value['nidn'] == $mahasiswa['nidn']) {
+					echo "selected";
+				} ?> value="<?php echo $value['nidn'] ?>"><?php echo $value['nama_dosen'] ?></option>
+			<?php endforeach ?>
+		</select>
+	</div>
+	<div class="form-group">
 		<label>Nama</label>
 		<input type="text" name="nama_mahasiswa" class="form-control" value="<?php echo $mahasiswa['nama_mahasiswa'] ?>">
 	</div>

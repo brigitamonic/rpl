@@ -19,7 +19,7 @@
 					<td>[ <?php echo $value['nim'] ?> ] <?php echo $value['nama_mahasiswa'] ?></td>
 					<td><?php echo $value['nama_dosen'] ?></td>
 					<td><?php echo date("d F Y", strtotime($value['jadwal_ujian'])) ?></td>
-					<td>Ruang <?php echo $value['pengajuan_ruangan'] ?></td>
+					<td><?php echo $value['pengajuan_ruangan'] ?></td>
 					<td><?php echo $value['judul_kp'] ?></td>
 				</tr>
 			<?php endforeach ?>

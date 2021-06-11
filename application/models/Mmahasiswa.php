@@ -5,7 +5,23 @@ class Mmahasiswa extends CI_Model
 	
 	function tampil_mahasiswa()
 	{
+
+		$this->db->select("*, mahasiswa.jenis_kelamin AS jenis_kelamin");
+		$this->db->join('dosen', 'dosen.nidn = mahasiswa.nidn', 'left');
 		$this->db->join('tahun_ajaran','mahasiswa.tahun_masuk_mahasiswa=tahun_ajaran.id_tahun_ajaran','left');
+		$ambil = $this->db->get('mahasiswa');
+		return $ambil->result_array();
+	}
+
+	function tampil_mahasiswa_bimbingan()
+	{		
+		$this->db->select("mahasiswa.*, mahasiswa.jenis_kelamin AS jenis_kelamin, pengajuan.semester_pengajuan, tahun_ajaran.nama_tahun_ajaran, pengajuan.judul_kp, pengajuan.lembaga_instansi, pengajuan.pimpinan_lembaga_instansi");
+		$this->db->join('pengajuan','pengajuan.nim=mahasiswa.nim','left');
+		$this->db->join('tahun_ajaran','mahasiswa.tahun_masuk_mahasiswa=tahun_ajaran.id_tahun_ajaran','left');
+
+		// filter berdasarkan nidn nya
+		$this->db->where('mahasiswa.nidn', $_SESSION['dosen']['nidn']);
+
 		$ambil = $this->db->get('mahasiswa');
 		return $ambil->result_array();
 	}

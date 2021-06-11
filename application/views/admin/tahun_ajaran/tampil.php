@@ -14,9 +14,9 @@
 				<tr>
 					<td><?php echo $key+1 ?></td>
 					<td><?php echo $value['nama_tahun_ajaran'] ?></td>
-					<td></td>
 					<td>
 						<a href="<?php echo base_url("admin/tahun_ajaran/ubah/$value[id_tahun_ajaran]") ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
+						<a onclick="return confirm('Apakah anda yakin untuk menghapus?')" href="<?php echo base_url("admin/tahun_ajaran/hapus/$value[id_tahun_ajaran]") ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>
 			<?php endforeach ?>

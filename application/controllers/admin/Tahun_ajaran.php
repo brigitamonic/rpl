@@ -6,6 +6,11 @@ class Tahun_ajaran extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		// cek apakah sudah login? jika belum , usir ke halaman login
+		if ( !$this->session->userdata('admin') ) {
+			redirect('login');
+		}
+
 		$this->load->model('Mtahun_ajaran');
 	}
 
@@ -47,8 +52,16 @@ class Tahun_ajaran extends CI_Controller
 		$data['tahun_ajaran']=$this->Mtahun_ajaran->ambil_tahun_ajaran($id);
 
 		$this->load->view('admin/header');
-		$this->load->view('admin/tahun_ajaran/ubah',$id);
+		$this->load->view('admin/tahun_ajaran/ubah',$data);
 		$this->load->view('admin/footer');
 	}
+
+	function hapus($id)
+	{
+		$this->Mtahun_ajaran->hapus_tahun_ajaran($id);
+
+		redirect('admin/tahun_ajaran','refresh');
+	}
+
 }
 ?>

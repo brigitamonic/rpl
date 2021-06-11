@@ -2,7 +2,21 @@
 require 'assets/google/vendor/autoload.php';
 
 class Login extends CI_Controller 
-{
+{	
+	public function __construct()
+	{
+		parent::__construct();
+		// cek apakah sudah login? jika sudah , alihkan ke halaman home masing2 tipe user
+		if ( $this->session->userdata('dosen') ) {
+			redirect('dosen/home');
+		} elseif ( $this->session->userdata('admin') ) {
+			redirect('admin/home');
+		} elseif ( $this->session->userdata('mahasiswa') ) {
+			redirect('mahasiswa/home');
+		}
+
+		$this->load->model('Mdosen');
+	}
 	
 	public function index()
 	{
@@ -22,15 +36,24 @@ class Login extends CI_Controller
 			$google_oauth = new Google_Service_Oauth2($client);
 			$google_account_info = $google_oauth->userinfo->get();
 			$email_user = $google_account_info->email;
+
+			$this->session->unset_userdata('mahasiswa');
+			$this->session->unset_userdata('dosen');
+			$this->session->unset_userdata('admin');
+
 			$hasil = $this->Mlogin->login_user($email_user);
 			// echo "$email_user";
 			if ($hasil=="sukses-dosen") 
 			{
 				echo "<script>alert('Login Dosen Berhasil'); location='dosen/home';</script>";
 			}
+			elseif ($hasil=="sukses-admin") 
+			{
+				echo "<script>alert('Login Admin Berhasil'); location='admin/home';</script>";
+			}
 			elseif ($hasil=="sukses-mahasiswa") 
 			{
-				echo "<script>alert('Login Mahasiswa Berhasil'); location='admin/home';</script>";
+				echo "<script>alert('Login Mahasiswa Berhasil'); location='mahasiswa/home';</script>";
 			}
 			else
 			{
@@ -40,5 +63,8 @@ class Login extends CI_Controller
 		$data['client'] = $client;
 		$this->load->view('login',$data);
 	}
+
+
+
 }
 ?>
